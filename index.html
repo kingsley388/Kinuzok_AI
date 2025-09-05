@@ -3,17 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Name - Developer Portfolio</title>
+    <title>Kingsley Uzokwe - Developer Portfolio</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         /* Global Styles */
         :root {
-            --primary: #2563eb;
-            --secondary: #3b82f6;
-            --dark: #1e293b;
-            --light: #f8fafc;
-            --gray: #64748b;
-            --accent: #f97316;
+            --primary: #3498db;
+            --secondary: #2ecc71;
+            --dark: #2c3e50;
+            --light: #ecf0f1;
+            --gray: #7f8c8d;
+            --accent: #e74c3c;
+            --glass: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.2);
+            --glass-shadow: rgba(0, 0, 0, 0.1);
         }
 
         * {
@@ -28,9 +31,11 @@
         }
 
         body {
-            background-color: var(--light);
-            color: var(--dark);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: var(--light);
             line-height: 1.6;
+            min-height: 100vh;
+            background-attachment: fixed;
         }
 
         .container {
@@ -48,7 +53,7 @@
             text-align: center;
             margin-bottom: 50px;
             font-size: 2.5rem;
-            color: var(--dark);
+            color: var(--light);
             position: relative;
         }
 
@@ -60,7 +65,7 @@
             transform: translateX(-50%);
             width: 80px;
             height: 4px;
-            background: var(--primary);
+            background: var(--secondary);
             border-radius: 2px;
         }
 
@@ -69,24 +74,37 @@
             padding: 12px 28px;
             background: var(--primary);
             color: white;
-            border-radius: 5px;
+            border-radius: 30px;
             text-decoration: none;
             font-weight: 600;
             transition: all 0.3s ease;
             border: none;
             cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         }
 
         .btn:hover {
             background: var(--secondary);
             transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Glassmorphic Elements */
+        .glass {
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 8px 32px 0 var(--glass-shadow);
+            border-radius: 15px;
         }
 
         /* Navigation */
         nav {
-            background-color: white;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--glass-border);
             position: fixed;
             width: 100%;
             top: 0;
@@ -103,8 +121,12 @@
         .logo {
             font-size: 1.8rem;
             font-weight: 700;
-            color: var(--primary);
+            color: var(--light);
             text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--secondary);
         }
 
         .nav-links {
@@ -118,19 +140,32 @@
 
         .nav-links a {
             text-decoration: none;
-            color: var(--dark);
+            color: var(--light);
             font-weight: 500;
             transition: color 0.3s ease;
+            position: relative;
         }
 
-        .nav-links a:hover {
-            color: var(--primary);
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--secondary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
         }
 
         .menu-btn {
             display: none;
             font-size: 1.5rem;
             cursor: pointer;
+            color: var(--light);
         }
 
         /* Hero Section */
@@ -138,7 +173,6 @@
             height: 100vh;
             display: flex;
             align-items: center;
-            background: linear-gradient(135deg, #f0f4ff 0%, #e6f0ff 100%);
             margin-top: 70px;
         }
 
@@ -156,17 +190,17 @@
         .hero-text h1 {
             font-size: 3.5rem;
             margin-bottom: 20px;
-            color: var(--dark);
+            color: var(--light);
         }
 
         .hero-text p {
             font-size: 1.2rem;
-            color: var(--gray);
+            color: rgba(255, 255, 255, 0.8);
             margin-bottom: 30px;
         }
 
         .hero-text span {
-            color: var(--primary);
+            color: var(--secondary);
         }
 
         .hero-buttons {
@@ -177,7 +211,7 @@
         .btn-outline {
             background: transparent;
             border: 2px solid var(--primary);
-            color: var(--primary);
+            color: var(--light);
         }
 
         .btn-outline:hover {
@@ -193,13 +227,13 @@
         .hero-image img {
             max-width: 100%;
             border-radius: 50%;
-            border: 5px solid var(--primary);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            border: 5px solid var(--glass-border);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
         }
 
         /* About Section */
         .about {
-            background-color: white;
+            padding: 80px 0;
         }
 
         .about-content {
@@ -210,21 +244,23 @@
 
         .about-text {
             flex: 1;
+            padding: 30px;
         }
 
         .about-text h2 {
             font-size: 2.5rem;
             margin-bottom: 20px;
-            color: var(--dark);
+            color: var(--light);
         }
 
         .about-text p {
             margin-bottom: 20px;
-            color: var(--gray);
+            color: rgba(255, 255, 255, 0.8);
         }
 
         .skills {
             flex: 1;
+            padding: 30px;
         }
 
         .skill-item {
@@ -235,24 +271,25 @@
             display: flex;
             justify-content: space-between;
             margin-bottom: 8px;
+            color: var(--light);
         }
 
         .skill-bar {
             height: 10px;
-            background: #e2e8f0;
-            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
             overflow: hidden;
         }
 
         .skill-progress {
             height: 100%;
-            background: var(--primary);
-            border-radius: 5px;
+            background: var(--secondary);
+            border-radius: 10px;
         }
 
         /* Projects Section */
         .projects {
-            background: linear-gradient(135deg, #f0f4ff 0%, #e6f0ff 100%);
+            padding: 80px 0;
         }
 
         .project-grid {
@@ -262,11 +299,11 @@
         }
 
         .project-card {
-            background: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            padding: 20px;
             transition: transform 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
         }
 
         .project-card:hover {
@@ -276,6 +313,9 @@
         .project-image {
             height: 200px;
             overflow: hidden;
+            position: relative;
+            border-radius: 10px;
+            margin-bottom: 20px;
         }
 
         .project-image img {
@@ -289,19 +329,37 @@
             transform: scale(1.1);
         }
 
+        .coming-soon {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
         .project-info {
-            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
         }
 
         .project-info h3 {
             font-size: 1.5rem;
             margin-bottom: 10px;
-            color: var(--dark);
+            color: var(--light);
         }
 
         .project-info p {
-            color: var(--gray);
+            color: rgba(255, 255, 255, 0.8);
             margin-bottom: 15px;
+            flex-grow: 1;
         }
 
         .project-tags {
@@ -312,8 +370,8 @@
         }
 
         .project-tag {
-            background: #e0f2fe;
-            color: var(--primary);
+            background: rgba(52, 152, 219, 0.3);
+            color: var(--light);
             padding: 5px 10px;
             border-radius: 20px;
             font-size: 0.8rem;
@@ -322,67 +380,45 @@
 
         /* Experience Section */
         .experience {
-            background-color: white;
+            padding: 80px 0;
         }
 
-        .timeline {
-            position: relative;
-            max-width: 800px;
-            margin: 0 auto;
+        .experience-content {
+            padding: 30px;
         }
 
-        .timeline::after {
-            content: '';
-            position: absolute;
-            width: 6px;
-            background-color: var(--primary);
-            top: 0;
-            bottom: 0;
-            left: 50%;
-            margin-left: -3px;
+        .experience-item {
+            margin-bottom: 25px;
         }
 
-        .timeline-item {
-            padding: 10px 40px;
-            position: relative;
-            width: 50%;
-            box-sizing: border-box;
-        }
-
-        .timeline-item:nth-child(odd) {
-            left: 0;
-        }
-
-        .timeline-item:nth-child(even) {
-            left: 50%;
-        }
-
-        .timeline-content {
-            padding: 20px;
-            background-color: white;
-            position: relative;
-            border-radius: 6px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
-
-        .timeline-content h3 {
+        .experience-item h3 {
+            color: var(--secondary);
             margin-bottom: 10px;
-            color: var(--primary);
+            font-size: 1.5rem;
         }
 
-        .timeline-content p {
-            color: var(--gray);
-            margin-bottom: 10px;
+        .experience-item p {
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 15px;
         }
 
-        .timeline-date {
-            font-weight: 600;
-            color: var(--dark);
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .skill-pill {
+            background: rgba(46, 204, 113, 0.3);
+            color: var(--light);
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
         }
 
         /* Contact Section */
         .contact {
-            background: linear-gradient(135deg, #f0f4ff 0%, #e6f0ff 100%);
+            padding: 80px 0;
         }
 
         .contact-container {
@@ -392,12 +428,13 @@
 
         .contact-info {
             flex: 1;
+            padding: 30px;
         }
 
         .contact-info h3 {
             font-size: 1.5rem;
             margin-bottom: 20px;
-            color: var(--dark);
+            color: var(--light);
         }
 
         .contact-details {
@@ -408,17 +445,18 @@
             display: flex;
             align-items: center;
             margin-bottom: 15px;
-            color: var(--gray);
+            color: rgba(255, 255, 255, 0.8);
         }
 
         .contact-details i {
             margin-right: 15px;
-            color: var(--primary);
+            color: var(--secondary);
             font-size: 1.2rem;
         }
 
         .contact-form {
             flex: 1;
+            padding: 30px;
         }
 
         .form-group {
@@ -429,16 +467,18 @@
             display: block;
             margin-bottom: 5px;
             font-weight: 500;
-            color: var(--dark);
+            color: var(--light);
         }
 
         .form-group input,
         .form-group textarea {
             width: 100%;
             padding: 12px;
-            border: 1px solid #cbd5e1;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--glass-border);
             border-radius: 5px;
             font-size: 1rem;
+            color: var(--light);
         }
 
         .form-group textarea {
@@ -448,10 +488,12 @@
 
         /* Footer */
         footer {
-            background: var(--dark);
-            color: white;
             padding: 40px 0;
             text-align: center;
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-top: 1px solid var(--glass-border);
         }
 
         .social-links {
@@ -462,13 +504,130 @@
         }
 
         .social-links a {
-            color: white;
+            color: var(--light);
             font-size: 1.5rem;
             transition: color 0.3s ease;
         }
 
         .social-links a:hover {
+            color: var(--secondary);
+        }
+
+        /* Resume Download Button */
+        .resume-btn {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .resume-btn i {
+            margin-right: 8px;
+        }
+
+        .resume-btn .download-progress {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: 3px;
+            background: var(--secondary);
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+
+        /* Toast Notification */
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            color: var(--light);
+            padding: 15px 25px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transform: translateY(100px);
+            opacity: 0;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+        }
+
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .toast i {
+            margin-right: 10px;
+            color: var(--secondary);
+        }
+
+        /* Resume Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(5px);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+            color: var(--dark);
+        }
+
+        .modal-content h2 {
             color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .modal-content p {
+            margin-bottom: 25px;
+            color: var(--dark);
+        }
+
+        .modal-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .modal-btn {
+            padding: 10px 20px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .modal-btn.primary {
+            background: var(--primary);
+            color: white;
+            border: none;
+        }
+
+        .modal-btn.secondary {
+            background: transparent;
+            color: var(--dark);
+            border: 2px solid var(--gray);
+        }
+
+        .modal-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
 
         /* Responsive Design */
@@ -486,21 +645,11 @@
                 flex-direction: column;
             }
 
-            .timeline::after {
-                left: 31px;
-            }
-
-            .timeline-item {
-                width: 100%;
-                padding-left: 70px;
-                padding-right: 25px;
-            }
-
-            .timeline-item:nth-child(even) {
-                left: 0;
-            }
-
             .contact-container {
+                flex-direction: column;
+            }
+
+            .modal-buttons {
                 flex-direction: column;
             }
         }
@@ -513,8 +662,10 @@
                 top: 100%;
                 left: 0;
                 right: 0;
-                background: white;
-                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+                background: var(--glass);
+                backdrop-filter: blur(10px);
+                -webkit-backdrop-filter: blur(10px);
+                border-top: 1px solid var(--glass-border);
                 padding: 20px;
             }
 
@@ -542,9 +693,9 @@
 </head>
 <body>
     <!-- Navigation -->
-    <nav>
+    <nav class="glass">
         <div class="container nav-container">
-            <a href="#" class="logo">DevPortfolio</a>
+            <a href="#" class="logo">Kingsley<span>Uzokwe</span></a>
             <ul class="nav-links">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#about">About</a></li>
@@ -562,7 +713,7 @@
     <section id="home" class="hero">
         <div class="container hero-content">
             <div class="hero-text">
-                <h1>Hi, I'm <span>KINGSLEY ELOCHUKWU UZOKWE </span></h1>
+                <h1>Hi, I'm <span>Kingsley Uzokwe</span></h1>
                 <p>A passionate software developer specializing in building exceptional web applications and experiences.</p>
                 <div class="hero-buttons">
                     <a href="#projects" class="btn">View My Work</a>
@@ -570,7 +721,7 @@
                 </div>
             </div>
             <div class="hero-image">
-                <img src="https://placehold.co/400x400/2563eb/ffffff?text=AJ" alt="Developer Image">
+                <img src="https://placehold.co/400x400/3498db/ffffff?text=KU" alt="Kingsley Uzokwe">
             </div>
         </div>
     </section>
@@ -580,26 +731,20 @@
         <div class="container">
             <h2 class="section-title">About Me</h2>
             <div class="about-content">
-                <div class="about-text">
+                <div class="about-text glass">
                     <h2>Curious about who I am?</h2>
-                    <p>I'm a full-stack developer with 5 years of experience building scalable web applications. My passion lies in creating clean, efficient code and solving complex problems with elegant solutions.</p>
-                    <p>When I'm not coding, you can find me contributing to open-source projects, blogging about web development, or exploring new technologies in the ever-evolving tech landscape.</p>
+                    <p>I'm a full-stack developer with experience building scalable web applications. My passion lies in creating clean, efficient code and solving complex problems with elegant solutions.</p>
+                    <p>When I'm not coding, you can find me exploring new technologies in the ever-evolving tech landscape or contributing to open-source projects.</p>
                     <p>I believe in continuous learning and pushing the boundaries of what's possible with code.</p>
-                    <a href="#" class="btn">Download Resume</a>
+                  <a class="btn" href="https://raw.githubusercontent.com/youruser/yourrepo/main/assets/Kingsley_Uzokwe_Resume.pdf" download>
+  <i class="fas fa-download"></i> Download Resume
+</a>
+
                 </div>
-                <div class="skills">
+                <div class="skills glass">
                     <div class="skill-item">
                         <div class="skill-info">
                             <span>JavaScript</span>
-                            <span>95%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 95%"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-info">
-                            <span>React</span>
                             <span>90%</span>
                         </div>
                         <div class="skill-bar">
@@ -608,7 +753,7 @@
                     </div>
                     <div class="skill-item">
                         <div class="skill-info">
-                            <span>Node.js</span>
+                            <span>React</span>
                             <span>85%</span>
                         </div>
                         <div class="skill-bar">
@@ -624,6 +769,15 @@
                             <div class="skill-progress" style="width: 80%"></div>
                         </div>
                     </div>
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <span>SQL</span>
+                            <span>75%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 75%"></div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -634,47 +788,33 @@
         <div class="container">
             <h2 class="section-title">My Projects</h2>
             <div class="project-grid">
-                <div class="project-card">
+                <div class="project-card glass">
                     <div class="project-image">
-                        <img src="https://placehold.co/600x400/3b82f6/ffffff?text=E-Commerce+App" alt="Project 1">
+                        <img src="https://placehold.co/600x400/3498db/ffffff?text=Kinuzok+AI" alt="Kinuzok AI Project">
+                        <div class="coming-soon">Coming Soon</div>
                     </div>
                     <div class="project-info">
-                        <h3>E-Commerce Platform</h3>
-                        <p>A full-stack e-commerce solution with React frontend and Node.js backend.</p>
+                        <h3>Kinuzok AI</h3>
+                        <p>Kinuzok AI is an upcoming artificial intelligence platform designed to bring smarter, faster, and more innovative solutions to everyday challenges. Currently in development, it aims to combine advanced AI technology with user-friendly tools, making it easy for individuals and businesses to explore the future of intelligence. Stay tuned—Kinuzok AI is coming soon to transform the way you work, learn, and create.</p>
                         <div class="project-tags">
+                            <span class="project-tag">Python</span>
+                            <span class="project-tag">AI/ML</span>
                             <span class="project-tag">React</span>
-                            <span class="project-tag">Node.js</span>
-                            <span class="project-tag">MongoDB</span>
                         </div>
-                        <a href="#" class="btn">View Project</a>
+                        <a href="#" class="btn">View Details</a>
                     </div>
                 </div>
-                <div class="project-card">
+                <div class="project-card glass">
                     <div class="project-image">
-                        <img src="https://placehold.co/600x400/2563eb/ffffff?text=Task+Manager" alt="Project 2">
+                        <img src="https://placehold.co/600x400/2ecc71/ffffff?text=Task+Server" alt="Task Management Server">
                     </div>
                     <div class="project-info">
-                        <h3>Task Management App</h3>
-                        <p>A productivity application for managing tasks and projects with team collaboration.</p>
+                        <h3>Smart Tech Coding</h3>
+                        <p>Smart Tech Coding is an online learning platform where people of all levels can learn coding, technology, and digital skills. It provides easy-to-follow lessons, tutorials, and resources designed to help beginners start their journey and support advanced learners in improving their expertise. Whether you want to build websites, create apps, or explore the latest in tech, Smart Tech Coding makes learning accessible anytime, anywhere.</p>
                         <div class="project-tags">
-                            <span class="project-tag">Vue.js</span>
-                            <span class="project-tag">Firebase</span>
-                            <span class="project-tag">CSS</span>
-                        </div>
-                        <a href="#" class="btn">View Project</a>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-image">
-                        <img src="https://placehold.co/600x400/1e40af/ffffff?text=Weather+App" alt="Project 3">
-                    </div>
-                    <div class="project-info">
-                        <h3>Weather Dashboard</h3>
-                        <p>Real-time weather application with forecast data and interactive maps.</p>
-                        <div class="project-tags">
-                            <span class="project-tag">JavaScript</span>
-                            <span class="project-tag">API</span>
-                            <span class="project-tag">Chart.js</span>
+                            <span class="project-tag">Python</span>
+                            <span class="project-tag">FastAPI</span>
+                            <span class="project-tag">HTML/CSS</span>
                         </div>
                         <a href="#" class="btn">View Project</a>
                     </div>
@@ -683,98 +823,320 @@
         </div>
     </section>
 
-    <!-- Experience Section -->
-    <section id="experience" class="experience">
-        <div class="container">
-            <h2 class="section-title">Work Experience</h2>
-            <div class="timeline">
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <h3>Senior Developer</h3>
-                        <p class="timeline-date">2021 - Present</p>
-                        <p>TechInnovate Solutions</p>
-                        <p>Led a team of developers in building enterprise-level applications. Implemented CI/CD pipelines reducing deployment time by 40%.</p>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <h3>Full-Stack Developer</h3>
-                        <p class="timeline-date">2019 - 2021</p>
-                        <p>WebCraft Studios</p>
-                        <p>Developed and maintained multiple client websites and web applications using React and Node.js.</p>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <h3>Junior Developer</h3>
-                        <p class="timeline-date">2018 - 2019</p>
-                        <p>Digital Solutions Inc.</p>
-                        <p>Started my career working on front-end development and gradually expanded to full-stack responsibilities.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+<!-- Experience Section -->
+<section id="experience" class="experience">
+  <div class="container">
+    <h2 class="section-title">Experience</h2>
+    <div class="experience-content glass">
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
-        <div class="container">
-            <h2 class="section-title">Get In Touch</h2>
-            <div class="contact-container">
-                <div class="contact-info">
-                    <h3>Let's talk about your project</h3>
-                    <ul class="contact-details">
-                        <li><i class="fas fa-envelope"></i> alex.johnson@example.com</li>
-                        <li><i class="fas fa-phone"></i> +1 (555) 123-4567</li>
-                        <li><i class="fas fa-map-marker-alt"></i> San Francisco, California</li>
-                    </ul>
-                </div>
-                <div class="contact-form">
-                    <form>
-                        <div class="form-group">
-                            <label for="name">Name</label>
-                            <input type="text" id="name" placeholder="Your Name">
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" id="email" placeholder="Your Email">
-                        </div>
-                        <div class="form-group">
-                            <label for="message">Message</label>
-                            <textarea id="message" placeholder="Your Message"></textarea>
-                        </div>
-                        <button type="submit" class="btn">Send Message</button>
-                    </form>
-                </div>
-            </div>
+      <!-- Training Program -->
+      <div class="experience-item">
+        <h3>Infofit Software Solutions</h3>
+        <p><strong>6-Month Intensive Software Development Training</strong></p>
+        <p>
+          Completed a hands-on training program focused on modern software
+          development practices and real-world project building. Gained
+          practical experience with industry-standard tools and technologies.
+        </p>
+        <div class="skills-list">
+          <span class="skill-pill">Python</span>
+          <span class="skill-pill">JavaScript</span>
+          <span class="skill-pill">React</span>
+          <span class="skill-pill">Node.js</span>
+          <span class="skill-pill">SQL</span>
+          <span class="skill-pill">HTML/CSS</span>
+          <span class="skill-pill">Git & GitHub</span>
         </div>
-    </section>
+      </div>
+
+      <!-- Achievements -->
+      <div class="experience-item">
+        <h3>Key Achievements</h3>
+        <ul>
+          <li>Built and deployed a full-stack web application with React and Node.js</li>
+          <li>Designed efficient database schemas and optimized queries with SQL</li>
+          <li>Worked in a collaborative team environment using Agile/Scrum methodologies</li>
+          <li>Strengthened version control skills through Git and GitHub workflows</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- Contact Section -->
+<section id="contact" class="contact">
+  <div class="container">
+    <h2 class="section-title">Get In Touch</h2>
+    <div class="contact-container">
+
+      <!-- Contact Info -->
+      <div class="contact-info glass">
+        <h3>Let's talk about your project</h3>
+        <ul class="contact-details">
+          <li><i class="fas fa-envelope"></i> kingsleyuzokwe0@gmail.com</li>
+          <li><i class="fas fa-phone"></i> +234 802 263-1595</li>
+          <li><i class="fas fa-map-marker-alt"></i> Port-Harcourt, Nigeria</li>
+        </ul>
+        <div class="social-links">
+          <a href="https://github.com/kingsley388" target="_blank"><i class="fab fa-github"></i></a>
+          <a href="https://www.linkedin.com/in/kingsley-uzokwe/" target="_blank"><i class="fab fa-linkedin"></i></a>
+        </div>
+      </div>
+
+      <!-- Contact Form -->
+      <div class="contact-form glass">
+        <form action="https://formspree.io/f/mblapwpg" method="POST" id="contactForm" target="hiddenFrame">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" placeholder="Your Name" required>
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="_replyto" placeholder="Your Email" required>
+          </div>
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" placeholder="Your Message" required></textarea>
+          </div>
+          <button type="submit" class="btn">Send Message</button>
+        </form>
+        <iframe name="hiddenFrame" style="display: none;"></iframe>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Success Message Popup -->
+<div id="successPopup" class="popup">
+  <div class="popup-content glass">
+    <span class="close-popup">&times;</span>
+    <div class="popup-icon">
+      <i class="fas fa-check-circle"></i>
+    </div>
+    <h3>Message Sent Successfully!</h3>
+    <p>Thank you for reaching out. We will get back to you soon.</p>
+  </div>
+</div>
+
+<style>
+  /* Popup Styles */
+  .popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 2000;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .popup-content {
+    padding: 30px;
+    border-radius: 15px;
+    text-align: center;
+    max-width: 400px;
+    width: 90%;
+    position: relative;
+  }
+
+  .close-popup {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 24px;
+    cursor: pointer;
+    color: var(--light);
+  }
+
+  .popup-icon {
+    font-size: 50px;
+    color: var(--secondary);
+    margin-bottom: 15px;
+  }
+
+  .popup h3 {
+    color: var(--light);
+    margin-bottom: 15px;
+  }
+
+  .popup p {
+    color: rgba(255, 255, 255, 0.8);
+  }
+</style>
+
+<script>
+  // Handle form submission
+  document.getElementById('contactForm').addEventListener('submit', function(e) {
+    // Show success popup after a short delay
+    setTimeout(function() {
+      document.getElementById('successPopup').style.display = 'flex';
+
+      // Reset form
+      document.getElementById('contactForm').reset();
+    }, 1000);
+  });
+
+  // Close popup functionality
+  document.querySelector('.close-popup').addEventListener('click', function() {
+    document.getElementById('successPopup').style.display = 'none';
+  });
+
+  // Close popup when clicking outside
+  window.addEventListener('click', function(e) {
+    const popup = document.getElementById('successPopup');
+    if (e.target === popup) {
+      popup.style.display = 'none';
+    }
+  });
+</script>
 
     <!-- Footer -->
     <footer>
         <div class="container">
             <div class="social-links">
-                <a href="#"><i class="fab fa-github"></i></a>
-                <a href="#"><i class="fab fa-linkedin"></i></a>
-                <a href="#"><i class="fab fa-twitter"></i></a>
-                <a href="#"><i class="fab fa-dev"></i></a>
+                <a href="https://github.com/kingsley388" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/kingsley-uzokwe/" target="_blank"><i class="fab fa-linkedin"></i></a>
             </div>
-            <p>&copy; 2023 Alex Johnson. All rights reserved.</p>
+            <p>&copy; 2023 Kingsley Uzokwe. All rights reserved.</p>
         </div>
     </footer>
 
-    <script>
-        // Mobile menu toggle
-        document.querySelector('.menu-btn').addEventListener('click', function() {
-            document.querySelector('.nav-links').classList.toggle('active');
+
+  <!-- Success Message Popup -->
+  <div id="success-Popup" class="popup">
+    <div class="popup-content glass">
+      <span class="close-popup">&times;</span>
+      <div class="popup-icon">
+        <i class="fas fa-check-circle"></i>
+      </div>
+      <h3>Message Sent Successfully!</h3>
+      <p>Thank you for reaching out. We will get back to you soon.</p>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="toast" class="toast">
+    <i class="fas fa-check-circle"></i>
+    <span>Resume downloaded successfully!</span>
+  </div>
+
+  <!-- Resume Download Modal -->
+<div id="resumeModal" class="modal">
+  <div class="modal-content">
+    <h2>Download Resume</h2>
+    <p>How would you like to receive my resume?</p>
+    <div class="modal-buttons">
+
+      <!-- ✅ Replace your old button with this -->
+      <a href="assets/kingsley_uzokwe_resume.pdf" download="Kingsley_Uzokwe_Resume.pdf">
+        <button class="modal-btn primary">
+          <i class="fas fa-file-pdf"></i> Download PDF
+        </button>
+      </a>
+
+      <!-- Keep View Online as is -->
+      <button class="modal-btn secondary" id="viewOnline">
+        <i class="fas fa-eye"></i> View Online
+      </button>
+
+    </div>
+  </div>
+</div>
+
+
+  <script>
+    // ===== Mobile Menu =====
+    document.querySelector('.menu-btn').addEventListener('click', function() {
+      document.querySelector('.nav-links').classList.toggle('active');
+    });
+
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        document.querySelector('.nav-links').classList.remove('active');
+      });
+    });
+
+    // ===== Resume Download =====
+    document.getElementById('downloadResume').addEventListener('click', function(e) {
+      e.preventDefault();
+      document.getElementById('resumeModal').style.display = 'flex';
+    });
+
+    document.getElementById('resumeModal').addEventListener('click', function(e) {
+      if (e.target === this) this.style.display = 'none';
+    });
+
+    document.getElementById('downloadPdf').addEventListener('click', function() {
+      window.open('assets/kingsley_uzokwe_resume.pdf', '_blank');
+      showToast('Resume downloaded successfully!');
+      document.getElementById('resumeModal').style.display = 'none';
+    });
+
+    document.getElementById('viewOnline').addEventListener('click', function() {
+      window.open('assets/kingsley_uzokwe_resume.pdf', '_blank');
+      showToast('Opening resume in a new tab...');
+      document.getElementById('resumeModal').style.display = 'none';
+    });
+
+    // ===== Projects Links =====
+    document.querySelector('.project-card:first-child .btn').addEventListener('click', function(e) {
+      e.preventDefault();
+      window.open('https://github.com/kingsley388/Kinuzok_AI_project', '_blank');
+    });
+
+    document.querySelector('.project-card:nth-child(2) .btn').addEventListener('click', function(e) {
+      e.preventDefault();
+      window.open('https://github.com/kingsley388/kingsley', '_blank');
+    });
+
+    // ===== Toast =====
+    function showToast(message) {
+      const toast = document.getElementById('toast');
+      toast.querySelector('span').textContent = message;
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 3000);
+    }
+
+    // ===== Contact Form =====
+    const form = document.getElementById("contactForm");
+    form.addEventListener("submit", async function(e) {
+      e.preventDefault();
+
+      const formData = new FormData(form);
+
+      try {
+        const response = await fetch(form.action, {
+          method: "POST",
+          body: formData,
+          headers: { 'Accept': 'application/json' }
         });
 
-        // Close menu when clicking on a link
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                document.querySelector('.nav-links').classList.remove('active');
-            });
-        });
-    </script>
+        if (response.ok) {
+          document.getElementById('successPopup').style.display = 'flex';
+          form.reset();
+        } else {
+          alert("❌ Failed to send message. Please try again.");
+        }
+      } catch (error) {
+        alert("⚠️ An error occurred. Please check your connection and try again.");
+      }
+    });
+
+    // Close popup
+    document.querySelector('.close-popup').addEventListener('click', function() {
+      document.getElementById('successPopup').style.display = 'none';
+    });
+
+    window.addEventListener('click', function(e) {
+      const popup = document.getElementById('successPopup');
+      if (e.target === popup) popup.style.display = 'none';
+    });
+  </script>
 </body>
 </html>
